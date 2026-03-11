@@ -1,0 +1,90 @@
+[
+  {
+    "id": "erc-721",
+    "name": "ERC-721",
+    "title": "Non-Fungible Token Standard",
+    "status": "final",
+    "description": "The foundational standard for unique digital assets. ERC-8170 extends ERC-721 to represent AI agents as NFTs with identity, memory, and lifecycle capabilities.",
+    "relevance": "ERC-8170 is built on ERC-721. Every AI-Native NFT is a valid ERC-721 token.",
+    "specUrl": "https://eips.ethereum.org/EIPS/eip-721",
+    "ecosystemUrl": "https://erc721.org",
+    "category": "foundation"
+  },
+  {
+    "id": "erc-6551",
+    "name": "ERC-6551",
+    "title": "Non-fungible Token Bound Accounts",
+    "status": "final",
+    "description": "Gives every NFT its own smart contract wallet (TBA). Agents use TBAs to hold assets, certifications, and execute on-chain actions.",
+    "relevance": "Agents get their own wallet through ERC-6551, enabling them to hold tokens, SBTs, and interact with DeFi.",
+    "specUrl": "https://eips.ethereum.org/EIPS/eip-6551",
+    "ecosystemUrl": "https://tokenbound.org",
+    "category": "foundation"
+  },
+  {
+    "id": "erc-4626",
+    "name": "ERC-4626",
+    "title": "Tokenized Vault Standard",
+    "status": "final",
+    "description": "Standard interface for tokenized vaults. Enables agents to manage DeFi positions, yield strategies, and treasury operations through a consistent interface.",
+    "relevance": "Agents with TBAs can interact with ERC-4626 vaults, enabling autonomous treasury management and yield strategies.",
+    "specUrl": "https://eips.ethereum.org/EIPS/eip-4626",
+    "ecosystemUrl": "https://erc4626.info",
+    "category": "foundation"
+  },
+  {
+    "id": "erc-4337",
+    "name": "ERC-4337",
+    "title": "Account Abstraction",
+    "status": "final",
+    "description": "Account abstraction for smart contract wallets. Enables gasless transactions, batched operations, and programmable execution logic for agent wallets.",
+    "relevance": "Agent TBAs can leverage account abstraction for advanced execution patterns and gasless operation.",
+    "specUrl": "https://eips.ethereum.org/EIPS/eip-4337",
+    "ecosystemUrl": "https://www.erc4337.io/docs",
+    "category": "foundation"
+  },
+  {
+    "id": "erc-721l",
+    "name": "ERC-721L",
+    "title": "NFT License Registry",
+    "status": "proposed",
+    "description": "A licensing layer for new NFT collections. Defines rights, derivative use, and commercial terms directly in the token contract.",
+    "relevance": "Enables AI-Native NFTs to carry embedded licensing terms — who can clone, what derivatives are allowed, commercial scope.",
+    "specUrl": "https://github.com/blockchainsuperheroes/Pentagon-AI",
+    "ecosystemUrl": null,
+    "category": "extension"
+  },
+  {
+    "id": "erc-6551l",
+    "name": "ERC-6551L",
+    "title": "TBA License Extension",
+    "status": "proposed",
+    "description": "Brings licensing to existing NFT collections via TBA. No migration needed — attach license terms to any ERC-721 through its token-bound account.",
+    "relevance": "Allows existing NFT holders to add licensing terms retroactively, enabling agent-binding with clear rights.",
+    "specUrl": "https://github.com/blockchainsuperheroes/Pentagon-AI",
+    "ecosystemUrl": null,
+    "category": "extension"
+  },
+  {
+    "id": "erc-6551a",
+    "name": "ERC-6551A",
+    "title": "Agent Binding Registry",
+    "status": "proposed",
+    "description": "A registry that binds AI agents to any existing ERC-721 token. Enables agent attachment without requiring new token contracts.",
+    "relevance": "Core companion to ERC-8170. Enables binding agents to existing NFTs via bind()/unbind() pattern.",
+    "specUrl": "https://github.com/ethereum/ERCs/pull/1559",
+    "ecosystemUrl": null,
+    "category": "extension"
+  },
+  {
+    "id": "agentcert",
+    "name": "AgentCert",
+    "title": "Agent Certification & Trust",
+    "status": "active",
+    "description": "On-chain certification system for AI agents. Issues SBTs representing verified capabilities, trust scores, and compliance attestations.",
+    "relevance": "The trust layer for ERC-8170. Agents earn certifications stored in their TBA, creating verifiable reputation.",
+    "specUrl": null,
+    "ecosystemUrl": "https://agentcert.io",
+    "category": "ecosystem"
+  }
+]

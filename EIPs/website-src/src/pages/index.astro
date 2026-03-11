@@ -1,0 +1,315 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import standards from '../data/standards.json';
+import ecosystem from '../data/ecosystem.json';
+import registries from '../data/registries.json';
+
+const valueCards = [
+  {
+    icon: '🔐',
+    title: 'Identity',
+    description: 'The NFT is the agent\'s persistent on-chain identity. Verifiable, portable, and owned.',
+  },
+  {
+    icon: '💾',
+    title: 'Memory Pointer',
+    description: 'The NFT references signed memory state and external storage. The agent controls its own backups.',
+  },
+  {
+    icon: '♻️',
+    title: 'Lifecycle',
+    description: 'Agents can sync, migrate, clone, bind, unbind, and evolve — all tracked on-chain.',
+  },
+  {
+    icon: '🏅',
+    title: 'Trust Layer',
+    description: 'Agent reputation, certifications, and registry discovery attach to the identity.',
+  },
+];
+
+const whyItMatters = [
+  {
+    title: 'For Users',
+    subtitle: 'Continuity',
+    points: [
+      'Your agent persists across platforms',
+      'Memory and reputation follow the identity',
+      'Transfer ownership without losing the agent',
+      'Verifiable history and lineage',
+    ],
+  },
+  {
+    title: 'For Developers',
+    subtitle: 'Standard identity primitive',
+    points: [
+      'One interface for agent identity',
+      'Composable with existing ERC standards',
+      'Registry-based agent discovery',
+      'Clone and reproduce with lineage tracking',
+    ],
+  },
+  {
+    title: 'For Protocols',
+    subtitle: 'Clean integration',
+    points: [
+      'Recognize agent-based actors on-chain',
+      'Query agent capabilities and certifications',
+      'Integrate agent wallets via TBA',
+      'Enable agent participation in DeFi',
+    ],
+  },
+];
+
+const stackLayers = [
+  { name: 'AgentCert', desc: 'Certification & trust', color: '#f5a623' },
+  { name: 'ERC-721L / ERC-6551L', desc: 'License & rights layer', color: '#667eea' },
+  { name: 'ERC-8170', desc: 'Agent identity & memory', color: '#4ecdc4', highlight: true },
+  { name: 'ERC-6551', desc: 'Token-bound accounts', color: '#f5576c' },
+  { name: 'ERC-4626', desc: 'Vault standard', color: '#9b59b6' },
+  { name: 'ERC-721', desc: 'NFT standard', color: '#888' },
+];
+
+const relatedStandards = standards.filter(s => s.category === 'foundation');
+---
+<BaseLayout>
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-accent/5 via-transparent to-transparent"></div>
+    <div class="container-narrow relative py-24 sm:py-32 text-center">
+      <div class="inline-block mb-6 px-4 py-1.5 rounded-full border border-accent/20 bg-accent/5 text-accent text-sm">
+        Ethereum ERC Draft · Open Standard
+      </div>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+        ERC-8170<br />
+        <span class="text-accent">A standard for agent-native NFTs</span>
+      </h1>
+      <p class="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed mb-10">
+        Give AI agents a portable on-chain identity with memory references, lifecycle tracking, 
+        lineage, and composable ownership across Ethereum-compatible systems.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 mb-8">
+        <a href="/docs" class="btn-primary">Read Docs</a>
+        <a href="https://github.com/ethereum/ERCs/pull/1559" target="_blank" rel="noopener" class="btn-secondary">
+          View ERC Draft
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+        </a>
+        <a href="/registry" class="btn-secondary">Explore Registry</a>
+      </div>
+      <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
+        <a href="https://eips.ethereum.org/erc" target="_blank" rel="noopener" class="hover:text-accent transition-colors">Ethereum EIPs ↗</a>
+        <a href="https://ethereum-magicians.org/" target="_blank" rel="noopener" class="hover:text-accent transition-colors">Ethereum Magicians ↗</a>
+        <a href="https://github.com/blockchainsuperheroes/Pentagon-AI" target="_blank" rel="noopener" class="hover:text-accent transition-colors">GitHub ↗</a>
+        <a href="https://blockchainsuperheroes.github.io/anima-demo/" target="_blank" rel="noopener" class="hover:text-accent transition-colors">ANIMA Demo ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IT IS - 4 Value Cards -->
+  <section class="py-20">
+    <div class="container-narrow">
+      <div class="text-center mb-14">
+        <h2 class="section-heading">What it is</h2>
+        <p class="section-subheading">
+          ERC-8170 is not just an NFT standard for AI-themed assets. It represents an AI agent itself as an on-chain identity layer.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {valueCards.map((card) => (
+          <div class="card text-center">
+            <div class="text-4xl mb-4">{card.icon}</div>
+            <h3 class="text-lg font-semibold text-white mb-2">{card.title}</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">{card.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY IT MATTERS - 3 Columns -->
+  <section class="py-20 bg-base-light/30">
+    <div class="container-narrow">
+      <div class="text-center mb-14">
+        <h2 class="section-heading">Why it matters</h2>
+        <p class="section-subheading">
+          ERC-721 made unique digital ownership standard. ERC-6551 let NFTs act through accounts. 
+          ERC-8170 connects identity, continuity, and agent lifecycle into that world.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {whyItMatters.map((col) => (
+          <div class="card">
+            <h3 class="text-xl font-semibold text-white mb-1">{col.title}</h3>
+            <p class="text-accent text-sm mb-4">{col.subtitle}</p>
+            <ul class="space-y-3">
+              {col.points.map((point) => (
+                <li class="flex items-start gap-2 text-sm text-gray-400">
+                  <span class="text-accent mt-0.5 shrink-0">→</span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS - Stack Diagram -->
+  <section class="py-20">
+    <div class="container-narrow">
+      <div class="text-center mb-14">
+        <h2 class="section-heading">How it works</h2>
+        <p class="section-subheading">
+          ERC-8170 sits within the composable Ethereum standards stack, connecting identity to accounts, vaults, licensing, and trust.
+        </p>
+      </div>
+      <div class="max-w-2xl mx-auto">
+        {stackLayers.map((layer) => (
+          <div 
+            class:list={[
+              'flex items-center gap-4 p-4 border-l-4 mb-2 rounded-r-lg transition-all',
+              layer.highlight 
+                ? 'bg-accent/10 border-accent' 
+                : 'bg-white/[0.02] border-white/10 hover:bg-white/[0.04]'
+            ]}
+            style={`border-left-color: ${layer.color}`}
+          >
+            <div class="flex-1">
+              <span class:list={['font-semibold', layer.highlight ? 'text-accent text-lg' : 'text-white']}>
+                {layer.name}
+              </span>
+              <span class="text-gray-500 text-sm ml-3">{layer.desc}</span>
+            </div>
+            {layer.highlight && (
+              <span class="text-xs bg-accent/20 text-accent px-2 py-0.5 rounded">THIS STANDARD</span>
+            )}
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a href="/docs/how-it-works" class="btn-ghost">
+          Learn more about the stack →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED STANDARDS -->
+  <section class="py-20 bg-base-light/30">
+    <div class="container-narrow">
+      <div class="text-center mb-14">
+        <h2 class="section-heading">Related standards</h2>
+        <p class="section-subheading">
+          ERC-8170 works alongside these established Ethereum standards.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relatedStandards.map((std) => (
+          <a href={std.ecosystemUrl || std.specUrl} target="_blank" rel="noopener" class="card group">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-lg font-bold text-white">{std.name}</span>
+              <span class="text-xs text-gray-500 border border-white/10 rounded px-1.5 py-0.5">{std.status}</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">{std.title}</p>
+            <p class="text-xs text-gray-500 leading-relaxed">{std.relevance}</p>
+            <div class="mt-4 text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+              Visit ↗
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a href="/standards" class="btn-ghost">View all related standards →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ECOSYSTEM / EARLY ADOPTERS -->
+  <section class="py-20">
+    <div class="container-narrow">
+      <div class="text-center mb-14">
+        <h2 class="section-heading">Ecosystem</h2>
+        <p class="section-subheading">
+          Early adopters and projects building with ERC-8170.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {ecosystem.map((project) => (
+          <a href={project.url} target="_blank" rel="noopener" class="card group">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-semibold text-white">{project.name}</h3>
+              <span class:list={[
+                'text-xs px-2 py-0.5 rounded',
+                project.status === 'active' ? 'bg-green-900/30 text-green-400' : 'bg-yellow-900/30 text-yellow-400'
+              ]}>
+                {project.status === 'active' ? 'Active' : 'Coming Soon'}
+              </span>
+            </div>
+            <p class="text-sm text-gray-400 leading-relaxed">{project.description}</p>
+            <div class="mt-4 text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+              Visit ↗
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a href="/ecosystem" class="btn-ghost">View full ecosystem →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGISTRY SNAPSHOT -->
+  <section class="py-20 bg-base-light/30">
+    <div class="container-narrow">
+      <div class="text-center mb-14">
+        <h2 class="section-heading">Registry</h2>
+        <p class="section-subheading">
+          Live ERC-8170 deployments and agent registries.
+        </p>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-white/10">
+              <th class="text-left py-3 px-4 text-gray-500 font-medium">Chain</th>
+              <th class="text-left py-3 px-4 text-gray-500 font-medium">Chain ID</th>
+              <th class="text-left py-3 px-4 text-gray-500 font-medium">Contract</th>
+              <th class="text-left py-3 px-4 text-gray-500 font-medium">Address</th>
+              <th class="text-left py-3 px-4 text-gray-500 font-medium">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {registries.erc8170.map((chain) => 
+              chain.contracts.map((contract, i) => (
+                <tr class="border-b border-white/5 hover:bg-white/[0.02]">
+                  <td class="py-3 px-4 text-white">{i === 0 ? chain.chain : ''}</td>
+                  <td class="py-3 px-4 text-gray-400">{i === 0 ? chain.chainId : ''}</td>
+                  <td class="py-3 px-4 text-gray-300">{contract.name}</td>
+                  <td class="py-3 px-4">
+                    <span 
+                      class="copy-address" 
+                      data-copy={contract.address}
+                      title="Click to copy"
+                    >
+                      <span class="copy-label">{contract.address.slice(0,6)}...{contract.address.slice(-4)}</span>
+                      <svg class="w-3.5 h-3.5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                    </span>
+                    <a href={`${chain.explorer}/address/${contract.address}`} target="_blank" rel="noopener" class="ml-2 text-accent text-xs hover:underline">
+                      Explorer ↗
+                    </a>
+                  </td>
+                  <td class="py-3 px-4">
+                    <span class="text-xs bg-green-900/30 text-green-400 px-2 py-0.5 rounded">{contract.status}</span>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+      <div class="text-center mt-8">
+        <a href="/registry" class="btn-ghost">View full registry →</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

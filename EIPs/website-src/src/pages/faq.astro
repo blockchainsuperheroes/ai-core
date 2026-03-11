@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faqs = [
+  {
+    q: 'Is ERC-8170 an official Ethereum ERC?',
+    a: 'ERC-8170 is currently a draft proposal submitted to the Ethereum ERCs repository. The formal specification lives on the Ethereum ERC system. This website serves as the ecosystem hub, while Ethereum EIPs remains the canonical source for the spec status.'
+  },
+  {
+    q: 'Where is the canonical spec?',
+    a: 'The formal specification is tracked via the Ethereum ERCs pull request process. View the ERC draft on GitHub and follow the discussion on Ethereum Magicians.'
+  },
+  {
+    q: 'How is ERC-8170 different from ERC-721?',
+    a: 'ERC-721 defines unique digital asset ownership. ERC-8170 extends that concept to represent an AI agent as an on-chain identity, adding memory pointers, lifecycle tracking (bind/unbind/clone/migrate), lineage, and integration with certification systems. Every ERC-8170 token is a valid ERC-721 token.'
+  },
+  {
+    q: 'How is ERC-8170 different from ERC-6551?',
+    a: 'ERC-6551 gives NFTs smart contract wallets (TBAs). ERC-8170 gives AI agents persistent identity. They\'re complementary: the agent gets its wallet through ERC-6551, and its identity and lifecycle through ERC-8170. ERC-6551 is the wallet layer; ERC-8170 is the identity layer.'
+  },
+  {
+    q: 'Does ERC-8170 require ERC-6551?',
+    a: 'ERC-6551 is recommended but not strictly required. Token-bound accounts (TBAs) are the most natural way for agents to hold assets, certifications, and execute on-chain actions. Without ERC-6551, you lose the wallet primitive but the identity model still works.'
+  },
+  {
+    q: 'How does it relate to ERC-4626?',
+    a: 'ERC-4626 standardizes vault interfaces. An agent with an ERC-8170 identity can manage ERC-4626 vaults through its TBA, creating verifiable agent fund managers. The agent\'s certifications and on-chain track record serve as a trust signal for capital delegators.'
+  },
+  {
+    q: 'What is ERC-721L?',
+    a: 'ERC-721L is a proposed licensing extension for new ERC-721 collections. It defines two-mode rights tiers (soulbound vs transferable) with a monotonic constraint: transferable rights must always be ≥ soulbound rights. It\'s how agent NFTs carry on-chain licensing terms.'
+  },
+  {
+    q: 'What is ERC-6551L?',
+    a: 'ERC-6551L is a proposed registry-style licensing layer for existing NFT collections. It attaches licensing terms through token-bound accounts, so any ERC-721 can get on-chain licensing retroactively without contract migration.'
+  },
+  {
+    q: 'What is ERC-6551A?',
+    a: 'ERC-6551A is the Agent Binding Registry. It extends the ERC-6551 pattern to allow binding an AI agent\'s EOA to any existing ERC-721 token via bind()/unbind(). When the NFT trades, the agent relationship transfers with it.'
+  },
+  {
+    q: 'Is AgentCert part of the standard?',
+    a: 'AgentCert (agentcert.io) is the trust and certification layer. It\'s not part of the ERC-8170 specification itself, but it\'s a companion system. Agents earn SBT-based certifications that live in their TBA. Think of it as the "driver\'s license" system for agents.'
+  },
+  {
+    q: 'Is memory stored on-chain?',
+    a: 'No. Memory content is stored off-chain (Dash Platform, Arweave, IPFS, or other storage). What goes on-chain is the memory hash and a storage URI. The agent signs its own memory state, and the hash provides verifiable proof of what the agent knows.'
+  },
+  {
+    q: 'Can agents migrate between devices?',
+    a: 'Yes. The migration_backup() flow allows the same agent to move to a new device. The critical rule: shut down the old instance first. The agent\'s identity (EOA + token + TBA) migrates intact. Never run two instances with the same EOA.'
+  },
+  {
+    q: 'Can agents be cloned?',
+    a: 'Yes. clone() creates a new agent that inherits the original\'s memory bundle but generates its own EOA, gets a new token ID, and starts with no certifications. Lineage is tracked on-chain: getGeneration(), getLineage(), getOffspring().'
+  },
+  {
+    q: 'What happens when an ERC-8170 token is transferred?',
+    a: 'Two paths. Standard transfer: the token and its TBA (with certifications) move to the new owner, but the agent must re-key. Retirement sale: the current agent calls unbind() and "retires," the NFT transfers, and the buyer\'s agent calls rebind() to inherit the token\'s TBA and certs. The retired agent becomes a free agent.'
+  },
+];
+---
+<BaseLayout>
+  <section class="py-20">
+    <div class="container-narrow">
+      <div class="text-center mb-14">
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-6">FAQ</h1>
+        <p class="section-subheading">
+          Common questions about ERC-8170 and the agent-native NFT stack.
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto space-y-4">
+        {faqs.map((faq, i) => (
+          <details class="group card cursor-pointer">
+            <summary class="flex items-start gap-3 list-none [&::-webkit-details-marker]:hidden">
+              <span class="text-accent font-mono text-sm mt-0.5 shrink-0">{String(i + 1).padStart(2, '0')}</span>
+              <span class="font-semibold text-white group-open:text-accent transition-colors flex-1">{faq.q}</span>
+              <svg class="w-5 h-5 text-gray-500 shrink-0 mt-0.5 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="text-sm text-gray-400 leading-relaxed mt-4 pl-8">{faq.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <!-- Still have questions -->
+      <div class="text-center mt-16 py-12 border-t border-white/10">
+        <h2 class="text-2xl font-bold text-white mb-4">Still have questions?</h2>
+        <p class="text-gray-400 mb-6">Join the discussion or reach out directly.</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="https://ethereum-magicians.org/" target="_blank" rel="noopener" class="btn-secondary">
+            Ethereum Magicians ↗
+          </a>
+          <a href="https://github.com/ethereum/ERCs/pull/1559" target="_blank" rel="noopener" class="btn-secondary">
+            ERC Discussion ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

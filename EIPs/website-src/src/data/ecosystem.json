@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Pentagon Games",
+    "description": "Gaming infrastructure on Pentagon Chain. First deployer of ERC-8170 contracts including AINFT Genesis and the AINFTRegistry.",
+    "url": "https://pentagon.games",
+    "category": "infrastructure",
+    "logo": null,
+    "status": "active"
+  },
+  {
+    "name": "AgentCert.io",
+    "description": "On-chain certification and trust scoring for AI agents. Issues SBT-based credentials to agent TBAs.",
+    "url": "https://agentcert.io",
+    "category": "certification",
+    "logo": null,
+    "status": "active"
+  },
+  {
+    "name": "ANIMA Demo",
+    "description": "Reference implementation and interactive demo of ERC-8170 agent binding, lookup, and registry tools.",
+    "url": "https://blockchainsuperheroes.github.io/anima-demo/",
+    "category": "reference",
+    "logo": null,
+    "status": "active"
+  },
+  {
+    "name": "PFPVault.com",
+    "description": "NFT marketplace with planned AI-Native and AI-Bound agent listing support, including retirement sale flows.",
+    "url": "https://pfpvault.com",
+    "category": "marketplace",
+    "logo": null,
+    "status": "coming-soon"
+  }
+]

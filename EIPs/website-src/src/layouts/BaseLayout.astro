@@ -1,0 +1,56 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = 'ERC-8170 — AI-Native NFT Standard', 
+  description = 'ERC-8170 is an on-chain identity standard for AI agents. Persistent identity, memory pointers, lifecycle tracking, and composable ownership across Ethereum-compatible systems.' 
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ERC-8170" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>{title}</title>
+</head>
+<body class="min-h-screen flex flex-col">
+  <Header />
+  <main class="flex-1">
+    <slot />
+  </main>
+  <Footer />
+  <script>
+    // Click-to-copy for addresses
+    document.addEventListener('click', (e) => {
+      const el = e.target.closest('[data-copy]');
+      if (!el) return;
+      const text = el.getAttribute('data-copy');
+      navigator.clipboard.writeText(text).then(() => {
+        el.classList.add('copy-success');
+        const orig = el.querySelector('.copy-label');
+        if (orig) {
+          const oldText = orig.textContent;
+          orig.textContent = 'Copied!';
+          setTimeout(() => { orig.textContent = oldText; el.classList.remove('copy-success'); }, 1500);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const tiers = [
+  { id: 0, name: 'UNSET / UNKNOWN', desc: 'No licensing information declared.' },
+  { id: 1, name: 'PERSONAL_USE', desc: 'Display and PFP use only. No commercial rights.' },
+  { id: 2, name: 'COMMERCIAL_NO_DERIVS', desc: 'Commercial use allowed. No derivatives.' },
+  { id: 3, name: 'NONCOMMERCIAL_DERIVS', desc: 'Derivatives allowed for non-commercial use.' },
+  { id: 4, name: 'COMMERCIAL_DERIVS_NONEXCLUSIVE', desc: 'Commercial derivatives, non-exclusive.' },
+  { id: 5, name: 'COMMERCIAL_DERIVS_EXCLUSIVE', desc: 'Commercial derivatives, exclusive to holder.' },
+  { id: 6, name: 'COMMERCIAL_DERIVS_SHAREALIKE', desc: 'Commercial derivatives with share-alike terms.' },
+  { id: 7, name: 'CC0', desc: 'Public domain. No restrictions.' },
+];
+---
+<BaseLayout>
+  <section class="py-20">
+    <div class="container-narrow">
+      <div class="text-center mb-14">
+        <div class="inline-block mb-4 px-4 py-1.5 rounded-full border border-purple-500/20 bg-purple-500/5 text-purple-400 text-sm">
+          Proposed Extensions
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-6">Licensing</h1>
+        <p class="section-subheading">
+          If an agent is branded or embodied by an NFT, the ecosystem needs to know what rights exist. 
+          ERC-721L and ERC-6551L bring on-chain licensing clarity to agent identities.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Licensing Matters -->
+  <section class="py-16 bg-base-light/30">
+    <div class="container-narrow">
+      <h2 class="section-heading mb-8">Why agent licensing matters</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="card">
+          <h3 class="text-lg font-semibold text-white mb-3">The problem</h3>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            When an NFT represents an AI agent, new questions arise that existing NFT standards don't address: 
+            Can the buyer clone the agent? Can they use the agent's identity commercially? Does the license 
+            change when the token transitions from soulbound to transferable? Without on-chain licensing, 
+            these questions have no verifiable answers.
+          </p>
+        </div>
+        <div class="card">
+          <h3 class="text-lg font-semibold text-white mb-3">The solution</h3>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Two complementary proposals: <strong class="text-white">ERC-721L</strong> for new collections 
+            that embed licensing directly in the token contract, and <strong class="text-white">ERC-6551L</strong> 
+            for existing collections that need licensing retroactively via their token-bound accounts.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Two Standards -->
+  <section class="py-16">
+    <div class="container-narrow">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="card border-accent/30">
+          <div class="text-accent text-sm font-semibold mb-2">FOR NEW COLLECTIONS</div>
+          <h3 class="text-2xl font-bold text-white mb-4">ERC-721L</h3>
+          <p class="text-sm text-gray-400 leading-relaxed mb-4">
+            A native licensing extension for ERC-721 tokens. Defines two-mode rights tiers 
+            (SBT mode vs Transferable mode) with a monotonic constraint: transferable rights 
+            must always be greater than or equal to soulbound rights.
+          </p>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li class="flex items-start gap-2"><span class="text-accent">→</span> Built into the contract from mint</li>
+            <li class="flex items-start gap-2"><span class="text-accent">→</span> Two-mode tier system (SBT / Transferable)</li>
+            <li class="flex items-start gap-2"><span class="text-accent">→</span> Monotonic enforcement on-chain</li>
+            <li class="flex items-start gap-2"><span class="text-accent">→</span> Per-token tier overrides</li>
+            <li class="flex items-start gap-2"><span class="text-accent">→</span> License URI per tier</li>
+          </ul>
+        </div>
+        <div class="card border-purple-500/30">
+          <div class="text-purple-400 text-sm font-semibold mb-2">FOR EXISTING COLLECTIONS</div>
+          <h3 class="text-2xl font-bold text-white mb-4">ERC-6551L</h3>
+          <p class="text-sm text-gray-400 leading-relaxed mb-4">
+            A registry-style licensing layer that attaches to any existing ERC-721 through its 
+            token-bound account. No contract migration needed. Add licensing terms to any NFT 
+            after the fact.
+          </p>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li class="flex items-start gap-2"><span class="text-purple-400">→</span> Works with any existing ERC-721</li>
+            <li class="flex items-start gap-2"><span class="text-purple-400">→</span> No migration or re-deployment</li>
+            <li class="flex items-start gap-2"><span class="text-purple-400">→</span> Licensing via TBA registry</li>
+            <li class="flex items-start gap-2"><span class="text-purple-400">→</span> Compatible with ERC-6551A agent binding</li>
+            <li class="flex items-start gap-2"><span class="text-purple-400">→</span> Retroactive rights declaration</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tier Ladder -->
+  <section class="py-16 bg-base-light/30">
+    <div class="container-narrow">
+      <h2 class="section-heading mb-4">Rights tier ladder</h2>
+      <p class="text-gray-400 mb-8">
+        ERC-721L defines 8 standardized licensing tiers. The monotonic rule ensures that upgrading a token 
+        from soulbound to transferable never reduces the holder's rights.
+      </p>
+      <div class="max-w-3xl mx-auto">
+        {tiers.map((tier) => (
+          <div class="flex items-center gap-4 p-4 border-l-4 mb-2 rounded-r-lg bg-white/[0.02] hover:bg-white/[0.04] transition-all"
+               style={`border-left-color: hsl(${tier.id * 45}, 70%, 60%)`}>
+            <span class="text-xl font-bold text-white w-8 text-center">{tier.id}</span>
+            <div class="flex-1">
+              <span class="font-mono text-sm text-accent">{tier.name}</span>
+              <p class="text-sm text-gray-500">{tier.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="mt-8 p-4 bg-accent/5 border border-accent/20 rounded-lg max-w-3xl mx-auto">
+        <p class="text-sm text-gray-400">
+          <strong class="text-accent">Monotonic rule:</strong> When a token's transferable tier is set, it must be 
+          ≥ the SBT tier. This is enforced on-chain. If a soulbound token has PERSONAL_USE (1), 
+          upgrading to transferable requires at least tier 1 or higher.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="py-16">
+    <div class="container-narrow">
+      <h2 class="section-heading mb-8">Licensing use cases</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="card">
+          <h3 class="text-lg font-semibold text-white mb-2">Branded agent</h3>
+          <p class="text-sm text-gray-400">A company mints an agent NFT with their brand. SBT tier: PERSONAL_USE. Transferable tier: COMMERCIAL_NO_DERIVS. The agent can be used personally, but commercial rights only unlock when transferable.</p>
+        </div>
+        <div class="card">
+          <h3 class="text-lg font-semibold text-white mb-2">Collectible avatar</h3>
+          <p class="text-sm text-gray-400">A PFP collection with restricted commercial use. Each token's license is on-chain and queryable, so marketplaces can display rights at listing time.</p>
+        </div>
+        <div class="card">
+          <h3 class="text-lg font-semibold text-white mb-2">Commercial agent identity</h3>
+          <p class="text-sm text-gray-400">An enterprise agent NFT with COMMERCIAL_DERIVS_EXCLUSIVE rights. The buyer gets exclusive commercial licensing for the agent's identity and capabilities.</p>
+        </div>
+        <div class="card">
+          <h3 class="text-lg font-semibold text-white mb-2">Open source agent</h3>
+          <p class="text-sm text-gray-400">CC0 tier for both modes. Fully open, forkable, and derivative-friendly. The licensing equivalent of open source for agent identities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 text-center">
+    <div class="container-narrow">
+      <h2 class="text-2xl font-bold text-white mb-4">Read the proposals</h2>
+      <p class="text-gray-400 mb-8">ERC-721L and ERC-6551L are in active development.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="https://github.com/blockchainsuperheroes/Pentagon-AI" target="_blank" rel="noopener" class="btn-primary">
+          View on GitHub
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+        </a>
+        <a href="/docs/related-standards" class="btn-secondary">Related Standards</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

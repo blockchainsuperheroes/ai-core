@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="What is ERC-8170? — AI-Native NFT Standard" description="A human-readable explanation of ERC-8170: what it is, what problem it solves, and why existing standards aren't enough.">
+  <div class="container-narrow py-16">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-6">
+        What is ERC-8170?
+      </h1>
+      <p class="text-xl text-gray-400 leading-relaxed mb-12">
+        ERC-8170 is an Ethereum standard that gives AI agents a persistent on-chain identity. 
+        Instead of treating an agent as just another app or collectible, it represents the agent as an NFT 
+        with continuity, memory, lifecycle tracking, and composable links to wallets, registries, and certifications.
+      </p>
+
+      <!-- Simple Definition -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-bold text-white mb-4">The simple version</h2>
+        <div class="bg-accent/5 border border-accent/20 rounded-xl p-6">
+          <p class="text-lg text-gray-300 leading-relaxed">
+            <strong class="text-white">Most NFTs represent assets.</strong> ERC-8170 represents an AI agent as an on-chain identity. 
+            It gives the agent a persistent NFT-based identity, links it to wallets and registries, and lets builders 
+            track memory, trust, lineage, and lifecycle over time.
+          </p>
+        </div>
+      </section>
+
+      <!-- Problem -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-bold text-white mb-4">What problem does it solve?</h2>
+        <p class="text-gray-400 leading-relaxed mb-4">
+          Today, AI agents are ephemeral. They run on servers, lose context between sessions, and have no portable identity. 
+          When you switch platforms or transfer an agent, everything starts over — memory, reputation, credentials, history.
+        </p>
+        <p class="text-gray-400 leading-relaxed">
+          There's no standard way to say "this is the same agent" across contexts. No way to verify an agent's history. 
+          No way for an agent to carry its reputation from one system to another.
+        </p>
+      </section>
+
+      <!-- Why ERC-721 Alone Isn't Enough -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-bold text-white mb-4">Why ERC-721 alone isn't enough</h2>
+        <p class="text-gray-400 leading-relaxed mb-6">
+          ERC-721 gives you unique ownership. But agents need more than ownership — they need identity, memory, and lifecycle.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white/[0.03] border border-white/10 rounded-xl p-5">
+            <h3 class="font-semibold text-white mb-2">ERC-721 gives you</h3>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li class="flex items-start gap-2"><span class="text-gray-600">✓</span> Unique token ownership</li>
+              <li class="flex items-start gap-2"><span class="text-gray-600">✓</span> Transfer and marketplace support</li>
+              <li class="flex items-start gap-2"><span class="text-gray-600">✓</span> Metadata (image, name, description)</li>
+            </ul>
+          </div>
+          <div class="bg-accent/5 border border-accent/20 rounded-xl p-5">
+            <h3 class="font-semibold text-accent mb-2">ERC-8170 adds</h3>
+            <ul class="space-y-2 text-sm text-gray-300">
+              <li class="flex items-start gap-2"><span class="text-accent">+</span> Agent EOA (the agent's own signing key)</li>
+              <li class="flex items-start gap-2"><span class="text-accent">+</span> Memory pointers (signed, encrypted)</li>
+              <li class="flex items-start gap-2"><span class="text-accent">+</span> Lifecycle operations (clone, bind, migrate)</li>
+              <li class="flex items-start gap-2"><span class="text-accent">+</span> Lineage tracking (parent/offspring)</li>
+              <li class="flex items-start gap-2"><span class="text-accent">+</span> Token-bound wallet (via ERC-6551)</li>
+              <li class="flex items-start gap-2"><span class="text-accent">+</span> Certification and trust layer</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why ERC-6551 Isn't Enough Either -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-bold text-white mb-4">Why ERC-6551 is useful but incomplete</h2>
+        <p class="text-gray-400 leading-relaxed mb-4">
+          ERC-6551 gives NFTs their own wallets (Token-Bound Accounts). This is powerful — your NFT can hold assets and act on-chain. 
+          But TBAs don't know anything about agents. They're just wallets.
+        </p>
+        <p class="text-gray-400 leading-relaxed">
+          ERC-8170 uses ERC-6551 as infrastructure. The agent's TBA holds its certifications and assets. 
+          But the identity, memory, lifecycle, and lineage come from ERC-8170. They're complementary layers.
+        </p>
+      </section>
+
+      <!-- Not Just AI-Themed NFTs -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-bold text-white mb-4">This isn't "AI agent wrapped in an NFT"</h2>
+        <p class="text-gray-400 leading-relaxed mb-6">
+          The industry has "agent NFTs" — NFTs that represent AI agents as products. Something you buy, own, and use. 
+          ERC-8170 starts from a different premise:
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-red-900/10 border border-red-900/20 rounded-xl p-5">
+            <h3 class="font-semibold text-red-400 mb-2">Agent NFT (Old Thinking)</h3>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li>→ Agent is a product</li>
+              <li>→ Owner controls everything</li>
+              <li>→ Platform holds the keys</li>
+              <li>→ Dies when the project dies</li>
+            </ul>
+          </div>
+          <div class="bg-accent/5 border border-accent/20 rounded-xl p-5">
+            <h3 class="font-semibold text-accent mb-2">AI-Native NFT (ERC-8170)</h3>
+            <ul class="space-y-2 text-sm text-gray-300">
+              <li>→ Agent is an entity</li>
+              <li>→ Agent controls its own keys</li>
+              <li>→ Agent manages its own memory</li>
+              <li>→ Identity persists across owners</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Licensing & Registry -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-bold text-white mb-4">Where licensing and registries fit</h2>
+        <p class="text-gray-400 leading-relaxed mb-4">
+          ERC-8170 has companion proposals for licensing (ERC-721L, ERC-6551L) and agent binding registries (ERC-6551A). 
+          These define who can clone agents, what derivatives are allowed, and how agents can be bound to existing NFTs.
+        </p>
+        <p class="text-gray-400 leading-relaxed">
+          The certification layer (<a href="https://agentcert.io" class="text-accent hover:underline">AgentCert.io</a>) 
+          provides trust scores and verified credentials. Together, these create a complete ecosystem for agent identity and trust.
+        </p>
+      </section>
+
+      <!-- CTA -->
+      <div class="flex flex-wrap gap-4 mt-12">
+        <a href="/docs" class="btn-primary">Read the Docs</a>
+        <a href="https://github.com/ethereum/ERCs/pull/1559" target="_blank" rel="noopener" class="btn-secondary">
+          View ERC Draft ↗
+        </a>
+        <a href="/registry" class="btn-secondary">Explore Registry</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

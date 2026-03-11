@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ecosystem from '../data/ecosystem.json';
+
+const categories = {
+  infrastructure: { label: 'Infrastructure', color: 'accent' },
+  certification: { label: 'Certification & Trust', color: 'yellow-400' },
+  reference: { label: 'Reference Implementation', color: 'blue-400' },
+  marketplace: { label: 'Marketplace', color: 'purple-400' },
+};
+---
+<BaseLayout>
+  <section class="py-20">
+    <div class="container-narrow">
+      <div class="text-center mb-14">
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-6">Ecosystem</h1>
+        <p class="section-subheading">
+          Projects and tools building on or integrating with ERC-8170 and the agent-native NFT stack.
+        </p>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        {ecosystem.map((project) => (
+          <a href={project.url} target="_blank" rel="noopener" class="card group">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-semibold text-white">{project.name}</h3>
+              <span class:list={[
+                'text-xs px-2 py-0.5 rounded',
+                project.status === 'active' ? 'bg-green-900/30 text-green-400' : 'bg-yellow-900/30 text-yellow-400'
+              ]}>
+                {project.status === 'active' ? 'Active' : 'Coming Soon'}
+              </span>
+            </div>
+            <span class="text-xs text-gray-500 uppercase tracking-wider">
+              {categories[project.category]?.label || project.category}
+            </span>
+            <p class="text-sm text-gray-400 leading-relaxed mt-3">{project.description}</p>
+            <div class="mt-4 text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+              Visit ↗
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- Agent-Based Vaults -->
+      <div class="bg-base-light/50 rounded-xl border border-white/10 p-8 mb-16">
+        <h2 class="text-2xl font-bold text-white mb-4">Agent-based vaults</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <p class="text-sm text-gray-400 leading-relaxed mb-4">
+              ERC-4626 standardizes vault interfaces for deposits, withdrawals, and shares. 
+              This makes it a strong primitive for AI-managed or agent-mediated vault strategies.
+            </p>
+            <p class="text-sm text-gray-400 leading-relaxed mb-4">
+              ERC-8170 sits in front of that as the <strong class="text-white">identity and continuity layer</strong> 
+              for the agent operating the vault. The agent's TBA holds vault shares, its certifications prove 
+              strategy competence, and its memory pointer tracks the portfolio thesis.
+            </p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-400 leading-relaxed mb-4">
+              This creates a new primitive: <strong class="text-accent">verifiable agent fund managers</strong>. 
+              Users can inspect the agent's certification level, on-chain track record (via TBA), and lineage 
+              (is this a proven clone of a high-performing agent?) before delegating capital.
+            </p>
+            <div class="flex gap-4 mt-6">
+              <a href="https://erc4626.info" target="_blank" rel="noopener" class="btn-ghost text-sm">
+                ERC-4626 Alliance ↗
+              </a>
+              <a href="https://eips.ethereum.org/EIPS/eip-4626" target="_blank" rel="noopener" class="btn-ghost text-sm">
+                EIP-4626 Spec ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="text-center py-12 border-t border-white/10">
+        <h2 class="text-2xl font-bold text-white mb-4">Building with ERC-8170?</h2>
+        <p class="text-gray-400 mb-6">Submit your project to be listed in the ecosystem directory.</p>
+        <a href="https://github.com/blockchainsuperheroes/Pentagon-AI/issues" target="_blank" rel="noopener" class="btn-primary">
+          Submit your project
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

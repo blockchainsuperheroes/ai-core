@@ -1,0 +1,28 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import DocsSidebar from '../components/DocsSidebar.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+<BaseLayout title={title} description={description}>
+  <div class="container-wide py-12">
+    <div class="flex gap-12">
+      <!-- Sidebar -->
+      <aside class="hidden lg:block w-64 shrink-0">
+        <div class="sticky top-24">
+          <DocsSidebar currentPath={Astro.url.pathname} />
+        </div>
+      </aside>
+
+      <!-- Content -->
+      <article class="flex-1 min-w-0 prose prose-invert max-w-none prose-headings:scroll-mt-24">
+        <slot />
+      </article>
+    </div>
+  </div>
+</BaseLayout>
