@@ -11,6 +11,7 @@
     {
       "title": "Technical Guide",
       "items": [
+        { "label": "ERC Interface", "href": "/docs/interface" },
         { "label": "Lifecycle Model", "href": "/docs/lifecycle" },
         { "label": "Storage & Memory", "href": "/docs/storage" },
         { "label": "Security", "href": "/docs/security" }
