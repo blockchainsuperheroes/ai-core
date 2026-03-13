@@ -61,6 +61,7 @@ const whyItMatters = [
 ];
 
 const stackLayers = [
+  { name: 'AgentCert', desc: 'Certification & trust', color: '#f5a623' },
   { name: 'ERC-8170', desc: 'Agent identity & memory', color: '#4ecdc4', highlight: true },
   { name: 'ERC-8171', desc: 'Agent binding registry (extends ERC-6551 w/ ERC-8170)', color: '#3dbdb5' },
   { name: 'ERC-4626', desc: 'Vault standard', color: '#9b59b6' },
@@ -75,7 +76,7 @@ const relatedStandards = standards.filter(s => s.category === 'foundation');
     <div class="absolute inset-0 bg-gradient-to-b from-accent/5 via-transparent to-transparent"></div>
     <div class="container-narrow relative py-24 sm:py-32 text-center">
       <div class="inline-block mb-6 px-4 py-1.5 rounded-full border border-accent/20 bg-accent/5 text-accent text-sm">
-        Ethereum ERC Draft · Open Standard
+        Draft Proposal · Open for Review &amp; Adoption
       </div>
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
         ERC-8170<br />
@@ -94,7 +95,7 @@ const relatedStandards = standards.filter(s => s.category === 'foundation');
       <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
         <a href="https://eips.ethereum.org/erc" target="_blank" rel="noopener" class="hover:text-accent transition-colors">Ethereum EIPs ↗</a>
         <a href="https://ethereum-magicians.org/" target="_blank" rel="noopener" class="hover:text-accent transition-colors">Ethereum Magicians ↗</a>
-        <a href="https://github.com/blockchainsuperheroes/Pentagon-AI" target="_blank" rel="noopener" class="hover:text-accent transition-colors">GitHub ↗</a>
+        <a href="https://github.com/blockchainsuperheroes/ai-core/tree/main/EIPs" target="_blank" rel="noopener" class="hover:text-accent transition-colors">GitHub ↗</a>
         <a href="https://blockchainsuperheroes.github.io/anima-demo/" target="_blank" rel="noopener" class="hover:text-accent transition-colors">ANIMA Demo ↗</a>
       </div>
     </div>
@@ -322,12 +323,12 @@ const relatedStandards = standards.filter(s => s.category === 'foundation');
           <h3 class="font-semibold text-white text-sm mb-1">Review the ERC</h3>
           <p class="text-xs text-gray-500">Comment on the draft PR</p>
         </a>
-        <a href="https://github.com/blockchainsuperheroes/Pentagon-AI" target="_blank" rel="noopener" class="card group text-center">
+        <a href="https://github.com/blockchainsuperheroes/ai-core/tree/main/EIPs" target="_blank" rel="noopener" class="card group text-center">
           <div class="text-3xl mb-3">🛠️</div>
           <h3 class="font-semibold text-white text-sm mb-1">Contribute code</h3>
           <p class="text-xs text-gray-500">Reference implementation on GitHub</p>
         </a>
-        <a href="https://github.com/blockchainsuperheroes/Pentagon-AI/issues" target="_blank" rel="noopener" class="card group text-center">
+        <a href="https://github.com/blockchainsuperheroes/ai-core/issues" target="_blank" rel="noopener" class="card group text-center">
           <div class="text-3xl mb-3">🚀</div>
           <h3 class="font-semibold text-white text-sm mb-1">Submit your project</h3>
           <p class="text-xs text-gray-500">Join the ecosystem directory</p>
