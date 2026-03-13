@@ -30,13 +30,5 @@
     "category": "infrastructure",
     "logo": null,
     "status": "active"
-  },
-  {
-    "name": "PFPVault.com",
-    "description": "NFT marketplace with planned AI-Native and AI-Bound agent listing support, including retirement sale flows.",
-    "url": "https://pfpvault.com",
-    "category": "marketplace",
-    "logo": null,
-    "status": "coming-soon"
   }
 ]

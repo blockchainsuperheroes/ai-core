@@ -75,16 +75,5 @@
     "specUrl": "https://eips.ethereum.org/EIPS/eip-8126",
     "ecosystemUrl": null,
     "category": "adjacent"
-  },
-  {
-    "id": "agentcert",
-    "name": "AgentCert",
-    "title": "Agent Certification & Trust",
-    "status": "active",
-    "description": "On-chain certification system for AI agents. Issues SBTs representing verified capabilities, trust scores, and compliance attestations.",
-    "relevance": "The trust layer for ERC-8170. Agents earn certifications stored in their TBA, creating verifiable reputation.",
-    "specUrl": null,
-    "ecosystemUrl": "https://agentcert.io",
-    "category": "ecosystem"
   }
 ]
